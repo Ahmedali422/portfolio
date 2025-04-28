@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    .font-signature {
+  font-family: 'Great Vibes', cursive;
+  text-align: left; /* Default to left alignment on larger screens */
+}
+
+@media (max-width: 768px) {
+  .font-signature {
+    text-align: center; /* Center text on smaller screens */
+  }
+}
+
+    .skills-card, .about-card, .contact-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px) saturate(150%);
+      border-radius: 20px;
+      padding: 30px;
+      width: 100%;
+      max-width: 750px;
+      text-align: left;
+      box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
+      margin-top: 20px;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    body {
+      background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .background-waves {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 0, 255, 0.2), rgba(0, 255, 255, 0.2), transparent);
+      animation: waves 5s infinite linear;
+    }
+
+    @keyframes waves {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(20px); }
+      100% { transform: translateY(0px); }
+    }
+
+    nav ul li a {
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      transform: translateY(-5px);
+      text-shadow: 0 0 15px #ff00ff, 0 0 25px #00ffff;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(30px) saturate(180%);
+      border-radius: 20px;
+      padding: 40px;
+      width: 100%;
+      max-width: 900px;
+      min-height: 280px;
+      box-shadow: 0 4px 15px rgba(255, 0, 255, 0.3);
+      position: relative;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    .glow-border {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      perspective: 1000px;
+      background: linear-gradient(45deg, #ff00ff, #00ffff, #ff9900, #00ff99);
+      background-size: 300% 300%;
+      animation: borderAnimation 3s infinite alternate ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+    }
+
+    @keyframes borderAnimation {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .flip-box {
+      width: 150px;
+      height: 150px;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: flipProfile 10s infinite ease-in-out;
+    }
+
+    @keyframes flipProfile {
+      0%, 100% { transform: rotateY(0deg); }
+      50% { transform: rotateY(180deg); }
+    }
+
+    .flip-box img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid transparent;
+      background: linear-gradient(45deg, #ff00ff, #00ffff, #ff9900, #00ff99);
+      padding: 5px;
+      position: absolute;
+      backface-visibility: hidden;
+    }
+
+    .btn-glow {
+      background: linear-gradient(135deg, #ff00ff, #00ffff);
+      padding: 15px 30px;
+      border-radius: 20px;
+      font-weight: bold;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff;
+    }
+
+    .btn-glow:hover {
+
+      transform: scale(1.1) rotate(-5deg);
+      box-shadow: 0 0 20px #ff00ff, 0 0 30px #00ffff;
+    }
+
+    footer {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px) saturate(150%);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
+      margin: 40px auto;
+      max-width: 1000px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.3s ease-in-out;
+    }
+
+    footer a {
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    footer a:hover {
+      transform: translateY(-5px);
+      text-shadow: 0 0 15px #ff00ff, 0 0 25px #00ffff;
+    }
+  </style>
+</head>
+<body>
+  <div class="background-waves"></div>
+
+  <header class="p-6 text-center fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/10 shadow-lg">
+    <h1 class="text-3xl font-bold">Portfolio</h1>
+    <div class="text-white text-3xl font-bold font-signature tracking-wide">
+      AhmedAli
+    </div>
+    <nav id="navbar" class="mt-4">
+      <ul class="flex justify-center gap-6 text-lg">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="flex flex-col items-center text-center mt-40 px-4">
+    <div class="glass-card flex flex-col-reverse md:flex-row items-center gap-6" id="home">
+      <div class="text-left flex-1 order-2 md:order-1">
+        <h2 class="text-3xl md:text-4xl font-semibold">Hi, I'm Ahmed Ali</h2>
+        <p class="text-md md:text-lg text-gray-400">Full Stack/Laravel Web Developer</p>
+        <p class="mt-2 text-gray-500">I build scalable and efficient web applications with a passion for clean code and great user experience.</p>
+        <a class="btn-glow mt-6 inline-block" id="downloadCV" style="cursor: pointer;">Download CV</a>
+      </div>
+      <div class="glow-border order-1 md:order-2">
+        <div class="flip-box">
+          <img src="ahmed.jpeg" alt="Profile" />
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="flex justify-center px-4">
+    <div class="about-card" id="about">
+      <h2 class="text-2xl font-semibold mb-4">About Me</h2>
+      <p class="text-gray-400">I am a passionate developer with experience in building web applications using modern technologies. I love to learn and explore new things.</p>
+    </div>
+  </div>
+
+  <div class="flex justify-center px-4">
+    <div class="skills-card" id="skills">
+      <h2 class="text-2xl font-semibold mb-4">Skills</h2>
+      <p class="text-gray-400">Laravel, PHP, JavaScript, React, MySQL, PostgreSQL, MongoDB, API Development, Git</p>
+    </div>
+  </div>
+
+  <div class="flex justify-center px-4">
+    <div class="skills-card" id="projects">
+      <h2 class="text-2xl font-semibold mb-4">Projects</h2>
+      <ul class="text-gray-400 list-disc pl-5 space-y-2">
+        <li><strong>Multi-Tenant SaaS Platform:</strong> Laravel 9 + Stripe subscription system with isolated tenant environments.</li>
+        <li><strong>E-Commerce Store:</strong> Built with Laravel, integrated payment gateways and admin dashboards.</li>
+        <li><strong>Blog System:</strong> Custom CMS using Laravel with full CRUD, authentication, and API endpoints.</li>
+        <li><strong>React Dashboard:</strong> Real-time analytics UI built with React, Tailwind, and Chart.js.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="flex justify-center px-4">
+    <div class="contact-card" id="contact">
+      <h2 class="text-2xl font-semibold mb-4">Contact Me</h2>
+      <p class="text-gray-400">Feel free to reach out to me via email or social media.</p>
+      <ul class="text-gray-400 mt-4 space-y-2">
+        <li><strong>Email:</strong> <a href="">ahmed92624227@gmail.com</a></li>
+        <li><strong>Phone:</strong> +92 3163872285 / +92 3149630009</li>
+        <li><strong>LinkedIn:</strong> <a href="www.linkedin.com/in/ahmed-ali225" target="_blank">www.linkedin.com/in/ahmed-ali225</a></li>
+       </li>
+        <li><strong>Address:</strong> Karachi Sindh, Pakistan</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer class="mt-10" id="footer">
+    <p class="text-gray-300">© 2022 Ahmed Ali. All rights reserved.</p>
+    <p class="text-gray-300">Connect with me on 
+      <a href="ahmed92624227@gmail.com" class="text-blue-400 hover:underline" target="_blank">Email</a>| 
+      <a href="www.linkedin.com/in/ahmed-ali225" class="text-blue-400 hover:underline" target="_blank">LinkedIn</a> 
+    </p>
+  </footer>
+
+  <script>
+    gsap.to("#home", { opacity: 1, y: 0, duration: 1.5, ease: "power3.out" });
+    gsap.to("#navbar", { opacity: 1, y: 0, duration: 1, delay: 0.5, ease: "power2.out" });
+    gsap.to("#about", { opacity: 1, y: 0, duration: 1, delay: 1, ease: "power3.out" });
+    gsap.to("#skills", { opacity: 1, y: 0, duration: 1, delay: 1.5, ease: "power3.out" });
+    gsap.to("#projects", { opacity: 1, y: 0, duration: 1, delay: 2, ease: "power3.out" });
+    gsap.to("#contact", { opacity: 1, y: 0, duration: 1, delay: 2.5, ease: "power3.out" });
+    gsap.to("#footer", { opacity: 1, y: 0, duration: 1, delay: 3, ease: "power3.out" });
+
+    window.onload = function () {
+      document.getElementById('downloadCV').addEventListener('click', function (e) {
+        e.preventDefault();
+        const link = document.createElement('a');
+        link.href = 'AhmedAli_Resume.pdf';
+        link.download = 'AhmedAli_Resume.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
+    };
+  </script>
+</body>
+</html>
